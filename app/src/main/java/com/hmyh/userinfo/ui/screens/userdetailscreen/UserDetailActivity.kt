@@ -8,6 +8,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
+import com.hmyh.userinfo.R
 import com.hmyh.userinfo.data.vos.UserListVO
 import com.hmyh.userinfo.ui.theme.UserInfoTheme
 
@@ -30,7 +32,10 @@ class UserDetailActivity : ComponentActivity() {
 
         setContent {
             UserInfoTheme {
-                Surface(modifier = Modifier.fillMaxSize()) {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = colorResource(id = R.color.colorLightBlue900)
+                ) {
                     UserDetailScreen()
                 }
             }
