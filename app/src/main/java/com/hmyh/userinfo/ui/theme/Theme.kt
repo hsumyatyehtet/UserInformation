@@ -3,6 +3,7 @@ package com.hmyh.userinfo.ui.theme
 import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
@@ -13,6 +14,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
@@ -68,3 +70,10 @@ fun UserInfoTheme(
         content = content
     )
 }
+
+val BackgroundUserDetail = RoundedCornerShape(
+    topStart = 24.dp,
+    topEnd = 24.dp,
+    bottomEnd = 0.dp,
+    bottomStart = 0.dp
+)
