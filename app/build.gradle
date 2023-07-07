@@ -39,9 +39,9 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-//    kotlinOptions {
-//        jvmTarget = '1.8'
-//    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 
 
     buildFeatures {
@@ -62,8 +62,6 @@ dependencies {
 
 //    implementation 'androidx.core:core-ktx:1.8.0'
 //    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
-
-
 
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.20"
@@ -118,6 +116,28 @@ dependencies {
     androidTestImplementation "com.google.dagger:hilt-android-testing:2.46"
     kaptAndroidTest "com.google.dagger:hilt-compiler:2.46"
 
+    // OkHttp
+    implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.2'
+
+    //Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+
+    // RxKotlin
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0'
+    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+
+    // Room
+    implementation 'androidx.room:room-runtime:2.5.2'
+    annotationProcessor 'androidx.room:room-compiler:2.5.2'
+    implementation 'androidx.room:room-rxjava2:2.5.2'
+    kapt "androidx.room:room-compiler:2.5.2"
+
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.1"
 
 //    testImplementation 'junit:junit:4.13.2'
 //    androidTestImplementation 'androidx.test.ext:junit:1.1.5'

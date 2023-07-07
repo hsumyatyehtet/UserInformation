@@ -1,5 +1,6 @@
 package com.hmyh.userinfo.ui.screens.userlistscreen
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -11,16 +12,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.hmyh.userinfo.data.vos.UserListVO
 import com.hmyh.userinfo.utils.getUserList
+import com.hmyh.userinfo.viewmodel.UserListViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 typealias OnUserItemClick = (UserListVO) -> Unit
 
 @Composable
 fun UserListScreen(
     modifier: Modifier = Modifier,
-    onUserItemClick: OnUserItemClick
+    onUserItemClick: OnUserItemClick,
 ) {
 
-    var userList = getUserList()
+    val userListVIewModel = viewModel(modelClass = UserListViewModel::class.java)
+
+    val userList by userListVIewModel.mUserList.collectAsState()
 
     var text by remember { mutableStateOf("") }
 
@@ -48,10 +53,4 @@ fun UserListScreen(
         )
     }
 
-}
-
-@Preview
-@Composable
-fun UserListScreenPreview() {
-    //UserListScreen()
 }
