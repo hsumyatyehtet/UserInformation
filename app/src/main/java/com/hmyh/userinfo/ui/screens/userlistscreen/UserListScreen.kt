@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -25,7 +26,10 @@ fun UserListScreen(
 
     val userListVIewModel = viewModel(modelClass = UserListViewModel::class.java)
 
-    val userList by userListVIewModel.mUserList.collectAsState()
+    /** it is used before local database add.  **/
+    // val userList by userListVIewModel.mUserList.collectAsState()
+
+    val userList: List<UserListVO> by userListVIewModel.mUserList.observeAsState(initial = listOf())
 
     var text by remember { mutableStateOf("") }
 

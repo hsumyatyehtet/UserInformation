@@ -2,9 +2,11 @@ package com.hmyh.userinfo.data.vos
 
 import androidx.compose.runtime.Immutable
 import androidx.room.Embedded
+import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "user_list")
 @Immutable
 data class UserListVO(
 

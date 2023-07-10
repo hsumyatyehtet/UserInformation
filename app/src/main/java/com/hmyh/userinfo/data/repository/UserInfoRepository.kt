@@ -1,9 +1,12 @@
 package com.hmyh.userinfo.data.repository
 
 import android.annotation.SuppressLint
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.hmyh.userinfo.data.vos.UserListVO
 import com.hmyh.userinfo.network.UserInfoApi
+import com.hmyh.userinfo.persistance.daos.UserListDao
+import com.hmyh.userinfo.utils.subscribeDBWithCompletable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.GlobalScope
@@ -13,7 +16,8 @@ import javax.inject.Singleton
 
 @Singleton
 class UserInfoRepository @Inject constructor(
-    private val userInfoApi: UserInfoApi
+    private val userInfoApi: UserInfoApi,
+    private val userListDao: UserListDao
 ) {
 
     @SuppressLint("CheckResult")
@@ -33,12 +37,16 @@ class UserInfoRepository @Inject constructor(
                     liveData.postValue(userList)
 
                     onSuccess(userList)
-                    // mDatabase.userListDao().insertUserList(userList).subscribeDBWithCompletable()
+                    userListDao.insertUserList(userList).subscribeDBWithCompletable()
                 }
             }, {
                 onFailure(it.toString())
             })
 
+    }
+
+    fun getUserList(): LiveData<List<UserListVO>> {
+        return userListDao.getUserList()
     }
 
 }
