@@ -9,6 +9,8 @@ import com.hmyh.userinfo.persistance.daos.UserListDao
 import com.hmyh.userinfo.utils.subscribeDBWithCompletable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,6 +21,8 @@ class UserInfoRepository @Inject constructor(
     private val userInfoApi: UserInfoApi,
     private val userListDao: UserListDao
 ) {
+
+    private val coroutineScope = CoroutineScope(Dispatchers.IO)
 
     @SuppressLint("CheckResult")
     fun loadUserList(
@@ -47,6 +51,13 @@ class UserInfoRepository @Inject constructor(
 
     fun getUserList(): LiveData<List<UserListVO>> {
         return userListDao.getUserList()
+    }
+
+    fun getUserById(userId: Int) {
+
+
+
+        userListDao.getUserByUserId(userId)
     }
 
 }

@@ -100,6 +100,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-runtime-compose:$lifecycle_version"
+
+    // Dagger Hilt
     implementation "com.google.dagger:hilt-android:2.46"
     kapt "com.google.dagger:hilt-compiler:2.46"
 
@@ -142,6 +144,11 @@ dependencies {
 
 //    testImplementation 'junit:junit:4.13.2'
 //    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+
+    //Coroutines & Flow
+    def coroutines_flow_version = "1.6.4"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_flow_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_flow_version"
 
 
 }
