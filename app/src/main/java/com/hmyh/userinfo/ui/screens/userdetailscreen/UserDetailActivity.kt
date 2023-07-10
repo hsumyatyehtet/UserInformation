@@ -13,19 +13,17 @@ import com.hmyh.userinfo.R
 import com.hmyh.userinfo.data.vos.UserListVO
 import com.hmyh.userinfo.ui.theme.UserInfoTheme
 
-internal const val USER_NAME = "user name"
-
-fun launchUserDetail(context: Context, item: UserListVO) {
-    context.startActivity(createDetailActivityContent(context, item))
-}
-
-fun createDetailActivityContent(context: Context, item: UserListVO): Intent {
-    val intent = Intent(context, UserDetailActivity::class.java)
-    intent.putExtra(USER_NAME, item.name)
-    return intent
-}
-
 class UserDetailActivity : ComponentActivity() {
+
+    companion object{
+        const val USER_NAME = "user name"
+
+        fun newIntent(context: Context,item: UserListVO): Intent{
+            return Intent(context,UserDetailActivity::class.java).apply {
+                putExtra(USER_NAME,item.name)
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

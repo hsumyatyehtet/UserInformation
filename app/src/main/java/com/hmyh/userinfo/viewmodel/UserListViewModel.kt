@@ -25,7 +25,6 @@ class UserListViewModel @Inject constructor(
 
     init {
         loadUserList()
-
     }
 
     private fun loadUserList() {
@@ -34,7 +33,7 @@ class UserListViewModel @Inject constructor(
 
             userInfoRepository.loadUserList(
                 onSuccess = {
-                    /** it is used before local data add.  **/
+                    /** it is used before local database add.**/
                     // userList.value = it
                 },
                 onFailure = {
@@ -45,9 +44,5 @@ class UserListViewModel @Inject constructor(
         }
 
     }
-
-//    private fun getUserList() {
-//        userInfoRepository.getUserList()
-//    }
 
 }
