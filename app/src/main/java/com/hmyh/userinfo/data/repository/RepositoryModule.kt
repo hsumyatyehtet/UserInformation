@@ -1,6 +1,7 @@
 package com.hmyh.userinfo.data.repository
 
 import com.hmyh.userinfo.network.UserRemoteDataSource
+import com.hmyh.userinfo.persistance.UserListDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,8 +14,8 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideUserRepository(userRemoteDataSource: UserRemoteDataSource): UserRepository{
-        return UserRepositoryImpl(userRemoteDataSource)
+    fun provideUserRepository(userListDatabase: UserListDatabase,userRemoteDataSource: UserRemoteDataSource): UserRepository{
+        return UserRepositoryImpl(userListDatabase.userListDao(),userRemoteDataSource)
     }
 
 }

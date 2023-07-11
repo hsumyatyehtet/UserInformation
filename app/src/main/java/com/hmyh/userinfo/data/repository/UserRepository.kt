@@ -10,4 +10,6 @@ interface UserRepository {
         onFailure: (String)->Unit
     )
 
+    fun getUserList(): LiveData<List<UserListVO>>
+
 }

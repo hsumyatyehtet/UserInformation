@@ -26,10 +26,7 @@ fun UserListScreen(
 
     val userListVIewModel = viewModel(modelClass = UserListViewModel::class.java)
 
-    /** it is used before local database add.  **/
-    // val userList by userListVIewModel.mUserList.collectAsState()
-
-    //val userList: List<UserListVO> by userListVIewModel.mUserList.observeAsState(initial = listOf())
+    val userList: List<UserListVO> by userListVIewModel.mUserList.observeAsState(initial = listOf())
 
     var text by remember { mutableStateOf("") }
 
@@ -51,7 +48,7 @@ fun UserListScreen(
         )
 
         UserList(
-            userList = getUserList(),
+            userList = userList,
             onUserItemClick = onUserItemClick,
             listState = listState
         )

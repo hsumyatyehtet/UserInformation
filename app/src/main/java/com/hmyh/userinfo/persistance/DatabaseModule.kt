@@ -1,12 +1,14 @@
 package com.hmyh.userinfo.persistance
 
 import android.app.Application
+import android.content.Context
 import androidx.room.Room
 import com.hmyh.userinfo.persistance.daos.UserListDao
 import com.hmyh.userinfo.utils.DB_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -16,11 +18,8 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideDatabase(application: Application): UserListDatabase {
-        return Room.databaseBuilder(application, UserListDatabase::class.java, DB_NAME)
-            .allowMainThreadQueries()
-            .fallbackToDestructiveMigration()
-            .build()
+    fun provideDatabase(@ApplicationContext appContext: Context): UserListDatabase {
+        return UserListDatabase.getDatabase(appContext)
     }
 
     @Provides
