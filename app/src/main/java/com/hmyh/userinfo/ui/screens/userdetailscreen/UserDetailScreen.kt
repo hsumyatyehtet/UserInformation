@@ -45,12 +45,20 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.hmyh.userinfo.R
 import com.hmyh.userinfo.ui.theme.BackgroundUserDetail
+import com.hmyh.userinfo.viewmodel.UserListDetailViewModel
 
-@Preview
 @Composable
-fun UserDetailScreen() {
+fun UserDetailScreen(
+    modifier: Modifier = Modifier,
+    userId: Int
+) {
+
+    val mUserListDetailViewModel = viewModel(modelClass = UserListDetailViewModel::class.java)
+    mUserListDetailViewModel.getUserById(userId)
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -155,5 +163,40 @@ fun UserInformationSection() {
     }
 
 }
+
+
+@Preview
+@Composable
+fun UserDetailScreenPreview(
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(colorResource(id = R.color.colorLightBlue900))
+//            .verticalScroll(rememberScrollState())
+    ) {
+
+        Column {
+
+            Image(
+                imageVector = Icons.Filled.ArrowBack,
+                contentDescription = "",
+                colorFilter = ColorFilter.tint(
+                    color = colorResource(id = R.color.white)
+                ),
+                modifier = Modifier
+                    .padding(top = 16.dp, start = 16.dp)
+            )
+
+            UserNameSection()
+
+            Spacer(modifier = Modifier.height(40.dp))
+
+            UserInformationSection()
+
+        }
+    }
+}
+
 
 
