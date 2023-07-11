@@ -25,7 +25,7 @@ class UserInfoRepository @Inject constructor(
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
 
     @SuppressLint("CheckResult")
-    fun loadUserList(
+    suspend fun loadUserList(
         onSuccess: (userListVO: List<UserListVO>) -> Unit,
         onFailure: (String) -> Unit
     ) {

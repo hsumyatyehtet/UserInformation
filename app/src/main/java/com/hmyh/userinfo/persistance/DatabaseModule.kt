@@ -1,8 +1,7 @@
-package com.hmyh.userinfo.di
+package com.hmyh.userinfo.persistance
 
 import android.app.Application
 import androidx.room.Room
-import com.hmyh.userinfo.persistance.UserListDatabase
 import com.hmyh.userinfo.persistance.daos.UserListDao
 import com.hmyh.userinfo.utils.DB_NAME
 import dagger.Module

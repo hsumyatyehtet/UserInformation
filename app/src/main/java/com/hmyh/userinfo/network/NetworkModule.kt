@@ -1,7 +1,6 @@
-package com.hmyh.userinfo.di
+package com.hmyh.userinfo.network
 
 import com.google.gson.GsonBuilder
-import com.hmyh.userinfo.network.UserInfoApi
 import com.hmyh.userinfo.utils.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -10,12 +9,11 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object ApiModule {
+object NetworkModule {
 
     @Provides
     @Singleton
@@ -32,6 +30,12 @@ object ApiModule {
     @Singleton
     fun provideUserApi(retrofit: Retrofit): UserInfoApi{
         return retrofit.create(UserInfoApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserRemoteDataSource(api: UserInfoApi): UserRemoteDataSource{
+        return UserRemoteDataSource(api)
     }
 
 }
