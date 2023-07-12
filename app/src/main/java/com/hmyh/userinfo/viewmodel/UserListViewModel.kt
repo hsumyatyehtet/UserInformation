@@ -24,7 +24,6 @@ class UserListViewModel @Inject constructor(
 
         viewModelScope.launch {
             var userList = async { fetUserList() }
-
             userList.await()
         }
 
@@ -32,12 +31,8 @@ class UserListViewModel @Inject constructor(
 
     private suspend fun fetUserList() {
         userRepository.loadUserList(
-            onSuccess = {
-
-            },
-            onFailure = {
-
-            }
+            onSuccess = {},
+            onFailure = {}
         )
     }
 

@@ -12,4 +12,6 @@ interface UserRepository {
 
     fun getUserList(): LiveData<List<UserListVO>>
 
+    fun getUserById(userId: Int): LiveData<UserListVO>
+
 }

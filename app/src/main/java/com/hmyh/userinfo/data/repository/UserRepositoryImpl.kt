@@ -3,6 +3,7 @@ package com.hmyh.userinfo.data.repository
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.hmyh.userinfo.data.vos.UserListVO
 import com.hmyh.userinfo.network.UserRemoteDataSource
 import com.hmyh.userinfo.persistance.daos.UserListDao
@@ -17,6 +18,8 @@ class UserRepositoryImpl @Inject constructor(
     private val userRemoteDataSource: UserRemoteDataSource
 ) : BaseRepository(), UserRepository {
 
+    var mUserList: MutableLiveData<List<UserListVO>> = MutableLiveData()
+
     @SuppressLint("CheckResult")
     override suspend fun loadUserList(
         onSuccess: (userListVO: List<UserListVO>) -> Unit,
@@ -29,18 +32,21 @@ class UserRepositoryImpl @Inject constructor(
             .subscribe({ userList ->
                 userList?.let {mUserList->
                     onSuccess(mUserList)
-                    Log.d("mUserList",mUserList.toString())
                     userListDao.insertUserList(mUserList).subscribeDBWithCompletable()
                 }
             }, {
                 onFailure(it.toString())
-                Log.d("error",it.toString())
             })
+
 
     }
 
     override fun getUserList(): LiveData<List<UserListVO>> {
         return userListDao.getUserList()
+    }
+
+    override fun getUserById(userId: Int): LiveData<UserListVO> {
+        return userListDao.getUserByUserId(userId)
     }
 
 }
