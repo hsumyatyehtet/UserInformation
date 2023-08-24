@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.hmyh.userinfo.data.vos.UserListVO
 import com.hmyh.userinfo.network.UserRemoteDataSource
+import com.hmyh.userinfo.persistance.UserListDatabase
 import com.hmyh.userinfo.persistance.daos.UserListDao
 import com.hmyh.userinfo.utils.subscribeDBWithCompletable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -14,7 +15,7 @@ import javax.inject.Inject
 
 
 class UserRepositoryImpl @Inject constructor(
-    private val userListDao: UserListDao,
+    private val userListDatabase: UserListDatabase,
     private val userRemoteDataSource: UserRemoteDataSource
 ) : BaseRepository(), UserRepository {
 
@@ -32,7 +33,7 @@ class UserRepositoryImpl @Inject constructor(
             .subscribe({ userList ->
                 userList?.let {mUserList->
                     onSuccess(mUserList)
-                    userListDao.insertUserList(mUserList).subscribeDBWithCompletable()
+                    userListDatabase.userListDao().insertUserList(mUserList).subscribeDBWithCompletable()
                 }
             }, {
                 onFailure(it.toString())
@@ -42,11 +43,11 @@ class UserRepositoryImpl @Inject constructor(
     }
 
     override fun getUserList(): LiveData<List<UserListVO>> {
-        return userListDao.getUserList()
+        return userListDatabase.userListDao().getUserList()
     }
 
     override fun getUserById(userId: Int): LiveData<UserListVO> {
-        return userListDao.getUserByUserId(userId)
+        return userListDatabase.userListDao().getUserByUserId(userId)
     }
 
 }
