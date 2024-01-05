@@ -28,7 +28,7 @@ fun UserListScreen(
 
     val userList: List<UserListVO> by userListVIewModel.mUserList.observeAsState(initial = listOf())
 
-    var text by remember { mutableStateOf("") }
+    val text by remember { mutableStateOf("") }
 
     val listState = rememberLazyListState()
 

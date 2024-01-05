@@ -36,7 +36,7 @@ fun UserListItem(
 ) {
 
     Card(
-        modifier = Modifier
+        modifier = modifier
             .clickable { onUserItemClick(userListVO) }
             .fillMaxWidth()
             .padding(start = 16.dp, end = 16.dp, top = 16.dp),
@@ -123,22 +123,11 @@ fun UserRowMail(
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun UserItemPreview() {
-//    UserListItem(
-//        UserListVO(1, "Hsu Myat Ye Htet", "hsumyatyehtet", "hsumyatyehtet@gmail.com")
-//    )
-}
-
-@Preview
-@Composable
-fun UserRowNamePreview() {
-    UserRowName()
-}
-
-@Preview
-@Composable
-fun UserRowMailPreview() {
-    UserRowMail()
+    UserListItem(
+        UserListVO(1, "Hsu Myat Ye Htet", "hsumyatyehtet", "hsumyatyehtet@gmail.com"),
+        onUserItemClick = {}
+    )
 }

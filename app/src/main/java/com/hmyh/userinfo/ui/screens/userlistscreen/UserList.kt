@@ -6,7 +6,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import com.hmyh.userinfo.data.vos.UserListVO
+import com.hmyh.userinfo.utils.getUserList
+
 
 @Composable
 fun UserList(
@@ -28,4 +31,10 @@ fun UserList(
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun composePreview(){
+    UserList(userList = getUserList(), onUserItemClick = {})
 }
